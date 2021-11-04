@@ -41,13 +41,9 @@ class Validator {
      * Common method for `validateOrReject` and `validate` methods.
      */
     coreValidate(objectOrSchemaName, objectOrValidationOptions, maybeValidatorOptions) {
-        var _a;
         const object = typeof objectOrSchemaName === 'string' ? objectOrValidationOptions : objectOrSchemaName;
-        let options = typeof objectOrSchemaName === 'string' ? maybeValidatorOptions : objectOrValidationOptions;
+        const options = typeof objectOrSchemaName === 'string' ? maybeValidatorOptions : objectOrValidationOptions;
         const schema = typeof objectOrSchemaName === 'string' ? objectOrSchemaName : undefined;
-        if (!options)
-            options = {};
-        options['forbidUnknownValue'] = (_a = options['forbidUnknownValue']) !== null && _a !== void 0 ? _a : true;
         const executor = new ValidationExecutor_1.ValidationExecutor(this, options);
         const validationErrors = [];
         executor.execute(object, schema, validationErrors);

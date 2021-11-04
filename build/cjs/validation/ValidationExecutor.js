@@ -13,7 +13,7 @@ class ValidationExecutor {
     // -------------------------------------------------------------------------
     // Constructor
     // -------------------------------------------------------------------------
-    constructor(validator, validatorOptions) {
+    constructor(validator, validatorOptions = {}) {
         this.validator = validator;
         this.validatorOptions = validatorOptions;
         // -------------------------------------------------------------------------
@@ -25,6 +25,9 @@ class ValidationExecutor {
         // Private Properties
         // -------------------------------------------------------------------------
         this.metadataStorage = MetadataStorage_1.getMetadataStorage();
+        if (validatorOptions.forbidUnknownValues == null) {
+            validatorOptions.forbidUnknownValues = true;
+        }
     }
     // -------------------------------------------------------------------------
     // Public Methods

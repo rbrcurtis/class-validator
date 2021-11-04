@@ -30,7 +30,11 @@ export class ValidationExecutor {
   // Constructor
   // -------------------------------------------------------------------------
 
-  constructor(private validator: Validator, private validatorOptions?: ValidatorOptions) {}
+  constructor(private validator: Validator, private validatorOptions: ValidatorOptions = {}) {
+    if (validatorOptions.forbidUnknownValues == null) {
+      validatorOptions.forbidUnknownValues = true;
+    }
+  }
 
   // -------------------------------------------------------------------------
   // Public Methods
