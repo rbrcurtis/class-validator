@@ -98,9 +98,12 @@ export class Validator {
     maybeValidatorOptions?: ValidatorOptions
   ): Promise<ValidationError[]> {
     const object = typeof objectOrSchemaName === 'string' ? (objectOrValidationOptions as object) : objectOrSchemaName;
-    const options =
+    let options =
       typeof objectOrSchemaName === 'string' ? maybeValidatorOptions : (objectOrValidationOptions as ValidationOptions);
     const schema = typeof objectOrSchemaName === 'string' ? objectOrSchemaName : undefined;
+
+    if (!options)options = {};
+    (options as any)['forbidUnknownValue'] = (options as any)['forbidUnknownValue'] ?? true;
 
     const executor = new ValidationExecutor(this, options);
     const validationErrors: ValidationError[] = [];
